@@ -5,8 +5,8 @@
  
 SELECT ship, battle, result FROM Outcomes
 WHERE Outcomes.battle = 'Guadalcanal'
-AND NOT Outcomes.result = 'sunk';
--- ORDER BY ship DESC; 
+AND NOT Outcomes.result = 'sunk'
+ORDER BY ship DESC;  
 
 -- 2
 -- З таблиці Ships вивести назви кораблів та роки їх
@@ -25,8 +25,10 @@ SELECT DISTINCT product.model, maker, price FROM product JOIN pc ON product.mode
 -- Знайти виробників ПК, моделей яких немає в
 -- продажу (тобто відсутні в таблиці PC).
 
--- SELECT DISTINCT maker FROM Product
--- where model in (select model from pc);
+SELECT Product.maker FROM Product LEFT JOIN PC ON PC.model = Product.model
+WHERE Product.type = 'PC'
+GROUP BY Product.maker 
+HAVING COUNT(Product.model) != COUNT(PC.model);
 
 -- 5
 -- За Вашингтонським міжнародним договором від
@@ -66,11 +68,35 @@ HAVING COUNT(Product.model) = COUNT(PC.model);
 -- displacement, numGuns. (Підказка: використовувати підзапити в
 -- якості обчислювальних стовпців)
 
-select outcomes.ship, displacement, numGuns from ships
-inner join classes on ships.class=classes.class
-inner join outcomes on ships.name=outcomes.ship
-inner join battles on battles.name=outcomes.battle
-where battles.name='Guadalcanal';
+SELECT outcomes.ship, displacement, numGuns FROM ships
+INNER JOIN classes ON ships.class=classes.class
+INNER JOIN outcomes ON ships.name=outcomes.ship
+INNER JOIN battles ON battles.name=outcomes.battle
+WHERE battles.name='Guadalcanal';  
+
+-- 9 
+-- Для кожного рейсу (таблиця Trip) визначити трива-
+-- лість його польоту. Вивести: trip_no, назва компанії, plane, town_from,
+-- town_to, тривалість польоту. (Підказка: використати для перевірки
+-- умов оператор CASE)
+
+
+
+-- 10
+-- Знайдіть середню ціну ПК та ноутбуків, що ви-
+-- пущені виробником 'A'. Вивести: одна загальна середня ціна.
+-- (Підказка: використовувати оператор UNION)
+
+SELECT AVG(a.price) FROM (
+SELECT AVG(price) AS price
+FROM Laptop AS l
+JOIN Product AS p ON p.model = l.model
+where maker = 'A'
+UNION
+SELECT AVG(price) as price
+FROM PC AS pc
+JOIN Product AS p ON p.model = pc.model
+WHERE maker = 'A') AS a;
 
 
 
