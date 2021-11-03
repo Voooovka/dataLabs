@@ -1,9 +1,9 @@
 package ua.lviv.iot.model;
 
 import lombok.*;
-import ua.lviv.iot.model.enums.Position;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "subject")
@@ -22,7 +22,15 @@ public class Subject {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "reporter_phone_number", nullable = false)
-    private ClusterProgram clusterProgram;
+    @OneToMany(mappedBy = "subject", fetch = FetchType.EAGER)
+    private Set<Lecturer> lecturers;
+
+    @OneToMany(mappedBy = "subject", fetch = FetchType.EAGER)
+    private Set<Speaker> speakers;
+
+    @OneToMany(mappedBy = "subject", fetch = FetchType.EAGER)
+    private Set<StudentHasSubject> students;
+
+
+
 }

@@ -1,9 +1,9 @@
 package ua.lviv.iot.dao.impl;
 
-import ua.lviv.iot.model.Reporter;
+import ua.lviv.iot.model.Student;
 
-public class StudentDaoImpl extends AbstractDaoImpl<Reporter, String> {
+public class StudentDaoImpl extends AbstractDaoImpl<Student, String> {
     public StudentDaoImpl() {
-        super(Reporter.class);
+        super(Student.class);
     }
 }

@@ -132,23 +132,23 @@ CREATE TABLE `Vysochanskyi`.`speaker` (
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Vysochanskyi`.`cluster_program_has_subject`;
 CREATE TABLE `Vysochanskyi`.`cluster_program_has_subject` (
-                                                              `cluster_program_id` INT NOT NULL,
-                                                              `subject_id` INT NOT NULL,
-                                                              `id` INT NOT NULL AUTO_INCREMENT,
-                                                              INDEX `fk_cluster_program_has_subject_subject1_idx` (`subject_id` ASC) VISIBLE,
-                                                              INDEX `fk_cluster_program_has_subject_cluster_program1_idx` (`cluster_program_id` ASC) VISIBLE,
-                                                              PRIMARY KEY (`id`),
-                                                              CONSTRAINT `fk_cluster_program_has_subject_cluster_program1`
-                                                                  FOREIGN KEY (`cluster_program_id`)
-                                                                      REFERENCES `Vysochanskyi`.`cluster_program` (`id`)
-                                                                      ON DELETE NO ACTION
-                                                                      ON UPDATE NO ACTION,
-                                                              CONSTRAINT `fk_cluster_program_has_subject_subject1`
-                                                                  FOREIGN KEY (`subject_id`)
-                                                                      REFERENCES `Vysochanskyi`.`subject` (`id`)
-                                                                      ON DELETE NO ACTION
-                                                                      ON UPDATE NO ACTION)
-    ENGINE = InnoDB;
+                                                                            `cluster_program_id` INT NOT NULL,
+                                                                            `subject_id` INT NOT NULL,
+                                                                            PRIMARY KEY (`cluster_program_id`, `subject_id`),
+    INDEX `fk_cluster_program_has_subject_subject1_idx` (`subject_id` ASC) VISIBLE,
+    INDEX `fk_cluster_program_has_subject_cluster_program1_idx` (`cluster_program_id` ASC) VISIBLE,
+    CONSTRAINT `fk_cluster_program_has_subject_cluster_program1`
+    FOREIGN KEY (`cluster_program_id`)
+    REFERENCES `Vysochanskyi`.`cluster_program` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    CONSTRAINT `fk_cluster_program_has_subject_subject1`
+    FOREIGN KEY (`subject_id`)
+    REFERENCES `Vysochanskyi`.`subject` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -156,23 +156,23 @@ CREATE TABLE `Vysochanskyi`.`cluster_program_has_subject` (
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `Vysochanskyi`.`student_has_subject`;
 CREATE TABLE `Vysochanskyi`.`student_has_subject` (
-                                                      `subject_id` INT NOT NULL,
-                                                      `student_id` INT NOT NULL,
-                                                      `id` INT NOT NULL AUTO_INCREMENT,
-                                                      INDEX `fk_subject_has_student_student1_idx` (`student_id` ASC) VISIBLE,
-                                                      INDEX `fk_subject_has_student_subject1_idx` (`subject_id` ASC) VISIBLE,
-                                                      PRIMARY KEY (`id`),
-                                                      CONSTRAINT `fk_subject_has_student_subject1`
-                                                          FOREIGN KEY (`subject_id`)
-                                                              REFERENCES `Vysochanskyi`.`subject` (`id`)
-                                                              ON DELETE NO ACTION
-                                                              ON UPDATE NO ACTION,
-                                                      CONSTRAINT `fk_subject_has_student_student1`
-                                                          FOREIGN KEY (`student_id`)
-                                                              REFERENCES `Vysochanskyi`.`student` (`id`)
-                                                              ON DELETE NO ACTION
-                                                              ON UPDATE NO ACTION)
-    ENGINE = InnoDB;
+                                                                    `student_id` INT NOT NULL,
+                                                                    `subject_id` INT NOT NULL,
+                                                                    PRIMARY KEY (`student_id`, `subject_id`),
+    INDEX `fk_student_has_subject_subject1_idx` (`subject_id` ASC) VISIBLE,
+    INDEX `fk_student_has_subject_student1_idx` (`student_id` ASC) VISIBLE,
+    CONSTRAINT `fk_student_has_subject_student1`
+    FOREIGN KEY (`student_id`)
+    REFERENCES `Vysochanskyi`.`student` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    CONSTRAINT `fk_student_has_subject_subject1`
+    FOREIGN KEY (`subject_id`)
+    REFERENCES `Vysochanskyi`.`subject` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
 
 USE `Vysochanskyi` ;
 

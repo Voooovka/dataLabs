@@ -1,9 +1,9 @@
 package ua.lviv.iot.dao.impl;
 
-import ua.lviv.iot.model.RescueVehicle;
+import ua.lviv.iot.model.StudentGroup;
 
-public class StudentGroupDaoImpl extends AbstractDaoImpl<RescueVehicle, String> {
+public class StudentGroupDaoImpl extends AbstractDaoImpl<StudentGroup, String> {
     public StudentGroupDaoImpl() {
-        super(RescueVehicle.class);
+        super(StudentGroup.class);
     }
 }

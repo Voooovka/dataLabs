@@ -1,10 +1,10 @@
 package ua.lviv.iot.controller.impl;
 
-import ua.lviv.iot.model.Injury;
-import ua.lviv.iot.service.impl.InjuryServiceImpl;
+import ua.lviv.iot.model.Speaker;
+import ua.lviv.iot.service.impl.SpeakerServiceImpl;
 
-public class SpeakerControllerImpl extends AbstractControllerImpl<Injury, Integer> {
+public class SpeakerControllerImpl extends AbstractControllerImpl<Speaker, Integer> {
     public SpeakerControllerImpl() {
-        super(new InjuryServiceImpl());
+        super(new SpeakerServiceImpl());
     }
 }

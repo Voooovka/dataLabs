@@ -1,9 +1,9 @@
 package ua.lviv.iot.dao.impl;
 
-import ua.lviv.iot.model.Injury;
+import ua.lviv.iot.model.Speaker;
 
-public class SpeakerDaoImpl extends AbstractDaoImpl<Injury, Integer> {
+public class SpeakerDaoImpl extends AbstractDaoImpl<Speaker, Integer> {
     public SpeakerDaoImpl() {
-        super(Injury.class);
+        super(Speaker.class);
     }
 }

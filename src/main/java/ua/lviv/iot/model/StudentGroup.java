@@ -3,15 +3,16 @@ package ua.lviv.iot.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "hospital")
+@Table(name = "student_group")
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString(of = "id")
+@ToString
 @EqualsAndHashCode(of = "id")
-public class Hospital {
+public class StudentGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,4 +21,11 @@ public class Hospital {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "entry_year", nullable = false)
+    private Integer entryYear;
+
+    @OneToMany(mappedBy = "studentGroup", fetch = FetchType.EAGER)
+    private Set<Student> students;
+
 }

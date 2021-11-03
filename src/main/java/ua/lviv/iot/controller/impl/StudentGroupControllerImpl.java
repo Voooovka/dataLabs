@@ -1,10 +1,10 @@
 package ua.lviv.iot.controller.impl;
 
-import ua.lviv.iot.model.RescueVehicle;
-import ua.lviv.iot.service.impl.RescueVehicleServiceImpl;
+import ua.lviv.iot.model.StudentGroup;
+import ua.lviv.iot.service.impl.StudentGroupServiceImpl;
 
-public class StudentGroupControllerImpl extends AbstractControllerImpl<RescueVehicle, String> {
+public class StudentGroupControllerImpl extends AbstractControllerImpl<StudentGroup, String> {
     public StudentGroupControllerImpl() {
-        super(new RescueVehicleServiceImpl());
+        super(new StudentGroupServiceImpl());
     }
 }

@@ -3,7 +3,6 @@ package ua.lviv.iot.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.*;
 
 @Entity
@@ -26,26 +25,8 @@ public class ClusterProgram {
     @Column(name = "time_of_event")
     private String timeOfEvent;
 
-    @OneToMany(mappedBy = "cluster_program", fetch = FetchType.EAGER)
-    private Set<Subject> subjects;
+    @OneToMany(mappedBy = "clusterProgram", fetch = FetchType.EAGER)
+    private Set<ClusterProgramHasSubject> subjects;
 
 
-
-
-
-
-
-    @ManyToOne
-    @JoinColumn(name = "reporter_phone_number", nullable = false)
-    private Reporter reporter;
-
-    @ManyToOne
-    @JoinColumn(name = "call_address_id", nullable = false)
-    private Lecturer callAddress;
-
-    @OneToMany(mappedBy = "cluster_program", fetch = FetchType.EAGER)
-    private Set<CallHasRescuer> rescuers;
-
-    @OneToMany(mappedBy = "cluster_program", fetch = FetchType.EAGER)
-    private Set<CallHasRescueVehicle> rescueVehicles;
 }

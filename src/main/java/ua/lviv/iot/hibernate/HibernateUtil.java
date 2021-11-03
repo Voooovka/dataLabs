@@ -21,7 +21,7 @@ public class HibernateUtil {
                 // Hibernate settings equivalent to hibernate.cfg.xml properties
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/hrabovenskyi?allowPublicKeyRetrieval=true&" +
+                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/vysochanskyi?allowPublicKeyRetrieval=true&" +
                         "createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC");
                 settings.put(Environment.USER, "root");
                 settings.put(Environment.PASS, "Djkjlz2003");
@@ -35,13 +35,13 @@ public class HibernateUtil {
                 // Entities
                 configuration.addAnnotatedClass(ClusterProgram.class);
                 configuration.addAnnotatedClass(Lecturer.class);
-                configuration.addAnnotatedClass(Hospital.class);
-                configuration.addAnnotatedClass(Injury.class);
-                configuration.addAnnotatedClass(Reporter.class);
+                configuration.addAnnotatedClass(Response.class);
+                configuration.addAnnotatedClass(Speaker.class);
+                configuration.addAnnotatedClass(Student.class);
                 configuration.addAnnotatedClass(Subject.class);
-                configuration.addAnnotatedClass(RescueVehicle.class);
-                configuration.addAnnotatedClass(CallHasRescuer.class);
-                configuration.addAnnotatedClass(CallHasRescueVehicle.class);
+                configuration.addAnnotatedClass(StudentGroup.class);
+                configuration.addAnnotatedClass(StudentHasSubject.class);
+                configuration.addAnnotatedClass(ClusterProgramHasSubject.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();

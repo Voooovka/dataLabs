@@ -5,26 +5,28 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "injury")
+@Table(name = "speaker")
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode(of = "id")
-public class Injury {
+public class Speaker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "description", nullable = false)
-    private String description;
+    @Column(name = "surname", nullable = false)
+    private String surname;
 
-    @Column(name = "diagnosis", nullable = false)
-    private String diagnosis;
+    @Column(name = "firm", nullable = false)
+    private String firm;
 
     @ManyToOne
-    @JoinColumn(name = "hospital_id", nullable = false)
-    private Hospital hospital;
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
+
+
 }

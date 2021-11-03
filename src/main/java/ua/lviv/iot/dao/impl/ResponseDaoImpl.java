@@ -1,10 +1,10 @@
 package ua.lviv.iot.dao.impl;
 
-import ua.lviv.iot.model.Hospital;
+import ua.lviv.iot.model.Response;
 
-public class ResponseDaoImpl extends AbstractDaoImpl<Hospital, Integer> {
+public class ResponseDaoImpl extends AbstractDaoImpl<Response, Integer> {
 
     public ResponseDaoImpl() {
-        super(Hospital.class);
+        super(Response.class);
     }
 }

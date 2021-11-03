@@ -6,13 +6,13 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "lecturer")
+@Table(name = "student")
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString(of = "id")
+@ToString()
 @EqualsAndHashCode(of = "id")
-public class Lecturer {
+public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +22,14 @@ public class Lecturer {
     @Column(name = "surname", nullable = false)
     private String surname;
 
+    @Column(name = "name", nullable = false)
+    private String name;
+
     @ManyToOne
-    @JoinColumn(name = "subject_id", nullable = false)
-    private Subject subject;
+    @JoinColumn(name = "student_group_id", nullable = false)
+    private StudentGroup studentGroup;
+
+    @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
+    private Set<Response> responses;
 
 }

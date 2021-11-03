@@ -4,7 +4,7 @@ import org.hibernate.TypeMismatchException;
 import ua.lviv.iot.controller.AbstractController;
 import ua.lviv.iot.entitymanager.EntityManager;
 import ua.lviv.iot.model.*;
-import ua.lviv.iot.model.enums.Position;
+
 import ua.lviv.iot.service.AbstractService;
 import ua.lviv.iot.service.impl.*;
 
@@ -195,47 +195,43 @@ public class ViewOperations<T, K extends Serializable> {
                     LocalDateTime localDateTime = getValidLocalDateTime(inputText);
                     if (localDateTime == null) continue;
                     field.set(entity, localDateTime);
-                } else if (fieldType == Position.class) {
-                    Position position = getValidPosition(inputText);
-                    if (position == null) continue;
-                    field.set(entity, position);
                 } else if (fieldType == Boolean.TYPE) {
                     if (!(inputText.equals("0") || inputText.equals("1"))) {
                         System.out.println(ENTER_CORRECT_BOOLEAN);
                         continue;
                     }
                     field.set(entity, inputText.equals("0") ? Boolean.FALSE : Boolean.TRUE);
-                } else if (fieldType == Hospital.class) {
+                } else if (fieldType == Response.class) {
                     Integer id = getValidatedInteger(inputText);
                     if (id == null) continue;
-                    AbstractService<Hospital, Integer> hospitalService = new HospitalServiceImpl();
-                    field.set(entity, hospitalService.findById(id));
+                    AbstractService<Response, Integer> responseService = new ResponseServiceImpl();
+                    field.set(entity, responseService.findById(id));
                 } else if (fieldType == ClusterProgram.class) {
                     Integer id = getValidatedInteger(inputText);
                     if (id == null) continue;
-                    AbstractService<ClusterProgram, Integer> callService = new CallServiceImpl();
-                    field.set(entity, callService.findById(id));
-                } else if (fieldType == Injury.class) {
+                    AbstractService<ClusterProgram, Integer> clusterProgramService = new ClusterProgramServiceImpl();
+                    field.set(entity, clusterProgramService.findById(id));
+                } else if (fieldType == Speaker.class) {
                     Integer id = getValidatedInteger(inputText);
                     if (id == null) continue;
-                    AbstractService<Injury, Integer> injuryService = new InjuryServiceImpl();
-                    field.set(entity, injuryService.findById(id));
-                } else if (fieldType == RescueVehicle.class) {
-                    AbstractService<RescueVehicle, String> rescueVehicleService = new RescueVehicleServiceImpl();
-                    field.set(entity, rescueVehicleService.findById(inputText));
-                } else if (fieldType == Reporter.class) {
-                    AbstractService<Reporter, String> rescueVehicleService = new ReporterServiceImpl();
-                    field.set(entity, rescueVehicleService.findById(inputText));
+                    AbstractService<Speaker, Integer> speakerService = new SpeakerServiceImpl();
+                    field.set(entity, speakerService.findById(id));
+                } else if (fieldType == StudentGroup.class) {
+                    AbstractService<StudentGroup, String> studentGroupService = new StudentGroupServiceImpl();
+                    field.set(entity, studentGroupService.findById(inputText));
+                } else if (fieldType == Student.class) {
+                    AbstractService<Student, String> studentService = new StudentServiceImpl();
+                    field.set(entity, studentService.findById(inputText));
                 } else if (fieldType == Lecturer.class) {
                     Integer id = getValidatedInteger(inputText);
                     if (id == null) continue;
-                    AbstractService<Lecturer, Integer> callAddressService = new CallAddressServiceImpl();
-                    field.set(entity, callAddressService.findById(id));
+                    AbstractService<Lecturer, Integer> lecturerService = new LecturerServiceImpl();
+                    field.set(entity, lecturerService.findById(id));
                 } else if (fieldType == Subject.class) {
                     Integer id = getValidatedInteger(inputText);
                     if (id == null) continue;
-                    AbstractService<Subject, Integer> rescuerService = new RescuerServiceImpl();
-                    field.set(entity, rescuerService.findById(id));
+                    AbstractService<Subject, Integer> subjectService = new SubjectServiceImpl();
+                    field.set(entity, subjectService.findById(id));
                 } else {
                     System.out.println(ERROR_INVALID_VALUE);
                     continue;
@@ -249,22 +245,17 @@ public class ViewOperations<T, K extends Serializable> {
 
     private void getUserHintForField(String fieldName, Class<?> fieldType) {
         String hint = null;
-        if (fieldType == Integer.class || fieldType == Hospital.class || fieldType == ClusterProgram.class
-                || fieldType == Lecturer.class || fieldType == Subject.class || fieldType == Injury.class) {
+        if (fieldType == Integer.class || fieldType == Response.class || fieldType == ClusterProgram.class
+                || fieldType == Lecturer.class || fieldType == Subject.class || fieldType == Speaker.class) {
             hint = "integer using [0-9] digits";
-        } else if (fieldType == String.class || fieldType == Reporter.class || fieldType == RescueVehicle.class) {
+        } else if (fieldType == String.class || fieldType == Student.class || fieldType == StudentGroup.class) {
             hint = "pass any String";
         } else if (fieldType == LocalDateTime.class) {
             hint = "pass timestamp in format yyyy-MM-ddThh:mm:ss";
         } else if (fieldType == Boolean.TYPE) {
             hint = "enter 0 if false and 1 if true";
-        } else if (fieldType == Position.class) {
-            hint = "type one of the fields below";
         }
         System.out.printf((ENTER_FIELD_FORMAT) + "%n", String.format("%s (%s)", fieldName, hint));
-        if (fieldType == Position.class) {
-            Position.stream().forEach(val -> System.out.println(" - " + val));
-        }
     }
 
     private boolean isNonNullFieldEmpty(Field field, String inputText) {
@@ -282,17 +273,6 @@ public class ViewOperations<T, K extends Serializable> {
             }
         }
         return false;
-    }
-
-    private Position getValidPosition(String inputText) {
-        Position position;
-        try {
-            position = Position.valueOf(inputText);
-        } catch (IllegalArgumentException e) {
-            System.out.println(ENTER_CORRECT_POSITION);
-            return null;
-        }
-        return position;
     }
 
     private LocalDateTime getValidLocalDateTime(String inputText) {

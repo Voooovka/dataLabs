@@ -34,70 +34,70 @@ public class View {
      */
     private Map<String, String> generateTablesMenu() {
         Map<String, String> tablesMenu = new LinkedHashMap<>();
-        tablesMenu.put("1", "Table: Hospital");
-        tablesMenu.put("2", "Table: Injury");
-        tablesMenu.put("3", "Table: Rescuer");
-        tablesMenu.put("4", "Table: Reporter");
-        tablesMenu.put("5", "Table: Rescue vehicle");
-        tablesMenu.put("6", "Table: Call address");
-        tablesMenu.put("7", "Table: Call");
+        tablesMenu.put("1", "Table: Response");
+        tablesMenu.put("2", "Table: Speaker");
+        tablesMenu.put("3", "Table: Subject");
+        tablesMenu.put("4", "Table: Student");
+        tablesMenu.put("5", "Table: Student Group");
+        tablesMenu.put("6", "Table: Lecturer");
+        tablesMenu.put("7", "Table: Cluster Program");
         return tablesMenu;
     }
 
     private Map<String, Printable> generateTablesMenuMethods() {
         Map<String, Printable> tablesMenuMethods = new LinkedHashMap<>();
-        tablesMenuMethods.put("1", this::showHospitalMenu);
-        tablesMenuMethods.put("2", this::showInjuryMenu);
-        tablesMenuMethods.put("3", this::showRescuerMenu);
-        tablesMenuMethods.put("4", this::showReporterMenu);
-        tablesMenuMethods.put("5", this::showRescueVehicleMenu);
-        tablesMenuMethods.put("6", this::showCallAddressMenu);
-        tablesMenuMethods.put("7", this::showCallMenu);
+        tablesMenuMethods.put("1", this::showResponseMenu);
+        tablesMenuMethods.put("2", this::showSpeakerMenu);
+        tablesMenuMethods.put("3", this::showSubjectMenu);
+        tablesMenuMethods.put("4", this::showStudentMenu);
+        tablesMenuMethods.put("5", this::showStudentGroupMenu);
+        tablesMenuMethods.put("6", this::showLecturerMenu);
+        tablesMenuMethods.put("7", this::showClusterProgramMenu);
         return tablesMenuMethods;
     }
 
     /**
      * Show single table MENU
      */
-    private void showHospitalMenu() {
+    private void showResponseMenu() {
         Map<String, String> menu = generateMenu();
-        Map<String, Printable> menuMethods = generateHospitalMenuMethods();
+        Map<String, Printable> menuMethods = generateResponseMenuMethods();
         showMenuFromMaps(menu, menuMethods);
     }
 
-    private void showInjuryMenu() {
+    private void showSpeakerMenu() {
         Map<String, String> menu = generateMenu();
-        Map<String, Printable> menuMethods = generateInjuryMenuMethods();
+        Map<String, Printable> menuMethods = generateSpeakerMenuMethods();
         showMenuFromMaps(menu, menuMethods);
     }
 
-    private void showRescuerMenu() {
+    private void showSubjectMenu() {
         Map<String, String> menu = generateMenu();
-        Map<String, Printable> menuMethods = generateRescuerMenuMethods();
+        Map<String, Printable> menuMethods = generateSubjectMenuMethods();
         showMenuFromMaps(menu, menuMethods);
     }
 
-    private void showReporterMenu() {
+    private void showStudentMenu() {
         Map<String, String> menu = generateMenu();
-        Map<String, Printable> menuMethods = generateReporterMenuMethods();
+        Map<String, Printable> menuMethods = generateStudentMenuMethods();
         showMenuFromMaps(menu, menuMethods);
     }
 
-    private void showRescueVehicleMenu() {
+    private void showStudentGroupMenu() {
         Map<String, String> menu = generateMenu();
-        Map<String, Printable> menuMethods = generateRescueVehicleMenuMethods();
+        Map<String, Printable> menuMethods = generateStudentGroupMenuMethods();
         showMenuFromMaps(menu, menuMethods);
     }
 
-    private void showCallAddressMenu() {
+    private void showLecturerMenu() {
         Map<String, String> menu = generateMenu();
-        Map<String, Printable> menuMethods = generateCallAddressMenuMethods();
+        Map<String, Printable> menuMethods = generateLecturerMenuMethods();
         showMenuFromMaps(menu, menuMethods);
     }
 
-    private void showCallMenu() {
+    private void showClusterProgramMenu() {
         Map<String, String> menu = generateMenu();
-        Map<String, Printable> menuMethods = generateCallMenuMethods();
+        Map<String, Printable> menuMethods = generateClusterProgramMenuMethods();
         showMenuFromMaps(menu, menuMethods);
     }
 
@@ -117,96 +117,96 @@ public class View {
     /**
      * Generate single table MENU METHODS
      */
-    private Map<String, Printable> generateHospitalMenuMethods() {
-        AbstractController<Hospital, Integer> hospitalController = new ResponseControllerImpl();
-        ViewOperations<Hospital, Integer> hospitalOperation = new ViewOperations<>(hospitalController, Hospital.class);
+    private Map<String, Printable> generateResponseMenuMethods() {
+        AbstractController<Response, Integer> responseController = new ResponseControllerImpl();
+        ViewOperations<Response, Integer> responseOperation = new ViewOperations<>(responseController, Response.class);
 
         Map<String, Printable> menuMethods = new LinkedHashMap<>();
-        menuMethods.put("1", hospitalOperation::findAll);
-        menuMethods.put("2", hospitalOperation::findById);
-        menuMethods.put("3", hospitalOperation::create);
-        menuMethods.put("4", hospitalOperation::update);
-        menuMethods.put("5", hospitalOperation::delete);
+        menuMethods.put("1", responseOperation::findAll);
+        menuMethods.put("2", responseOperation::findById);
+        menuMethods.put("3", responseOperation::create);
+        menuMethods.put("4", responseOperation::update);
+        menuMethods.put("5", responseOperation::delete);
         return menuMethods;
     }
 
 
 
-    private Map<String, Printable> generateInjuryMenuMethods() {
-        AbstractController<Injury, Integer> injuryController = new SpeakerControllerImpl();
-        ViewOperations<Injury, Integer> injuryOperation = new ViewOperations<>(injuryController, Injury.class);
+    private Map<String, Printable> generateSpeakerMenuMethods() {
+        AbstractController<Speaker, Integer> speakerController = new SpeakerControllerImpl();
+        ViewOperations<Speaker, Integer> speakerOperation = new ViewOperations<>(speakerController, Speaker.class);
 
         Map<String, Printable> menuMethods = new LinkedHashMap<>();
-        menuMethods.put("1", injuryOperation::findAll);
-        menuMethods.put("2", injuryOperation::findById);
-        menuMethods.put("3", injuryOperation::create);
-        menuMethods.put("4", injuryOperation::update);
-        menuMethods.put("5", injuryOperation::delete);
+        menuMethods.put("1", speakerOperation::findAll);
+        menuMethods.put("2", speakerOperation::findById);
+        menuMethods.put("3", speakerOperation::create);
+        menuMethods.put("4", speakerOperation::update);
+        menuMethods.put("5", speakerOperation::delete);
         return menuMethods;
     }
 
-    private Map<String, Printable> generateRescuerMenuMethods() {
-        AbstractController<Subject, Integer> rescuerController = new SubjectControllerImpl();
-        ViewOperations<Subject, Integer> rescuerOperation = new ViewOperations<>(rescuerController, Subject.class);
+    private Map<String, Printable> generateSubjectMenuMethods() {
+        AbstractController<Subject, Integer> subjectController = new SubjectControllerImpl();
+        ViewOperations<Subject, Integer> subjectOperation = new ViewOperations<>(subjectController, Subject.class);
 
         Map<String, Printable> menuMethods = new LinkedHashMap<>();
-        menuMethods.put("1", rescuerOperation::findAll);
-        menuMethods.put("2", rescuerOperation::findById);
-        menuMethods.put("3", rescuerOperation::create);
-        menuMethods.put("4", rescuerOperation::update);
-        menuMethods.put("5", rescuerOperation::delete);
+        menuMethods.put("1", subjectOperation::findAll);
+        menuMethods.put("2", subjectOperation::findById);
+        menuMethods.put("3", subjectOperation::create);
+        menuMethods.put("4", subjectOperation::update);
+        menuMethods.put("5", subjectOperation::delete);
         return menuMethods;
     }
 
-    private Map<String, Printable> generateReporterMenuMethods() {
-        AbstractController<Reporter, String> reporterController = new StudentControllerImpl();
-        ViewOperations<Reporter, String> reporterOperation = new ViewOperations<>(reporterController, Reporter.class);
+    private Map<String, Printable> generateStudentMenuMethods() {
+        AbstractController<Student, String> studentController = new StudentControllerImpl();
+        ViewOperations<Student, String> studentOperation = new ViewOperations<>(studentController, Student.class);
 
         Map<String, Printable> menuMethods = new LinkedHashMap<>();
-        menuMethods.put("1", reporterOperation::findAll);
-        menuMethods.put("2", reporterOperation::findById);
-        menuMethods.put("3", reporterOperation::create);
-        menuMethods.put("4", reporterOperation::update);
-        menuMethods.put("5", reporterOperation::delete);
+        menuMethods.put("1", studentOperation::findAll);
+        menuMethods.put("2", studentOperation::findById);
+        menuMethods.put("3", studentOperation::create);
+        menuMethods.put("4", studentOperation::update);
+        menuMethods.put("5", studentOperation::delete);
         return menuMethods;
     }
 
-    private Map<String, Printable> generateRescueVehicleMenuMethods() {
-        AbstractController<RescueVehicle, String> rescueVehicleController = new StudentGroupControllerImpl();
-        ViewOperations<RescueVehicle, String> rescueVehicleOperation = new ViewOperations<>(rescueVehicleController, RescueVehicle.class);
+    private Map<String, Printable> generateStudentGroupMenuMethods() {
+        AbstractController<StudentGroup, String> studentGroupController = new StudentGroupControllerImpl();
+        ViewOperations<StudentGroup, String> studentGroupOperation = new ViewOperations<>(studentGroupController, StudentGroup.class);
 
         Map<String, Printable> menuMethods = new LinkedHashMap<>();
-        menuMethods.put("1", rescueVehicleOperation::findAll);
-        menuMethods.put("2", rescueVehicleOperation::findById);
-        menuMethods.put("3", rescueVehicleOperation::create);
-        menuMethods.put("4", rescueVehicleOperation::update);
-        menuMethods.put("5", rescueVehicleOperation::delete);
+        menuMethods.put("1", studentGroupOperation::findAll);
+        menuMethods.put("2", studentGroupOperation::findById);
+        menuMethods.put("3", studentGroupOperation::create);
+        menuMethods.put("4", studentGroupOperation::update);
+        menuMethods.put("5", studentGroupOperation::delete);
         return menuMethods;
     }
 
-    private Map<String, Printable> generateCallAddressMenuMethods() {
-        AbstractController<Lecturer, Integer> callAddressController = new LecturerControllerImpl();
-        ViewOperations<Lecturer, Integer> callAddressOperation = new ViewOperations<>(callAddressController, Lecturer.class);
+    private Map<String, Printable> generateLecturerMenuMethods() {
+        AbstractController<Lecturer, Integer> lecturerController = new LecturerControllerImpl();
+        ViewOperations<Lecturer, Integer> lecturerOperation = new ViewOperations<>(lecturerController, Lecturer.class);
 
         Map<String, Printable> menuMethods = new LinkedHashMap<>();
-        menuMethods.put("1", callAddressOperation::findAll);
-        menuMethods.put("2", callAddressOperation::findById);
-        menuMethods.put("3", callAddressOperation::create);
-        menuMethods.put("4", callAddressOperation::update);
-        menuMethods.put("5", callAddressOperation::delete);
+        menuMethods.put("1", lecturerOperation::findAll);
+        menuMethods.put("2", lecturerOperation::findById);
+        menuMethods.put("3", lecturerOperation::create);
+        menuMethods.put("4", lecturerOperation::update);
+        menuMethods.put("5", lecturerOperation::delete);
         return menuMethods;
     }
 
-    private Map<String, Printable> generateCallMenuMethods() {
-        AbstractController<ClusterProgram, Integer> callController = new ClusterProgramControllerImpl();
-        ViewOperations<ClusterProgram, Integer> callOperation = new ViewOperations<>(callController, ClusterProgram.class);
+    private Map<String, Printable> generateClusterProgramMenuMethods() {
+        AbstractController<ClusterProgram, Integer> clusterProgramController = new ClusterProgramControllerImpl();
+        ViewOperations<ClusterProgram, Integer> clusterProgramOperation = new ViewOperations<>(clusterProgramController, ClusterProgram.class);
 
         Map<String, Printable> menuMethods = new LinkedHashMap<>();
-        menuMethods.put("1", callOperation::findAll);
-        menuMethods.put("2", callOperation::findById);
-        menuMethods.put("3", callOperation::create);
-        menuMethods.put("4", callOperation::update);
-        menuMethods.put("5", callOperation::delete);
+        menuMethods.put("1", clusterProgramOperation::findAll);
+        menuMethods.put("2", clusterProgramOperation::findById);
+        menuMethods.put("3", clusterProgramOperation::create);
+        menuMethods.put("4", clusterProgramOperation::update);
+        menuMethods.put("5", clusterProgramOperation::delete);
         return menuMethods;
     }
 
